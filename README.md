@@ -1,1 +1,0 @@
-[![Build status](https://ci.appveyor.com/api/projects/status/pkl50s245ichd9sv?svg=true)](https://ci.appveyor.com/project/AnastasiyaSergeichik/carddelivery)
