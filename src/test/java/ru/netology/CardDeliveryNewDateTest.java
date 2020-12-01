@@ -27,7 +27,7 @@ public class CardDeliveryNewDateTest {
 
     @Test
     void shouldSubmitRequest() {
-        form.$("[data-test-id=city] input").setValue(meetingDate.getCity());
+        form.$("[data-test-id=city] input").setValue(DataGenerator.Registration.generateCity());
         form.$("[data-test-id=date] input").setValue(DataGenerator.Registration.generateFirstDate());
         form.$("[data-test-id=name] input").setValue(meetingDate.getFirstName() + " " + meetingDate.getLastName());
         form.$("[data-test-id=phone] input").setValue("+7" + meetingDate.getPhoneNumber());
@@ -39,7 +39,7 @@ public class CardDeliveryNewDateTest {
 
     @Test
     void shouldSubmitRequestNewDate() {
-        form.$("[data-test-id=city] input").setValue(meetingDate.getCity());
+        form.$("[data-test-id=city] input").setValue(DataGenerator.Registration.generateCity());
         form.$("[data-test-id=date] input").doubleClick().sendKeys(Keys.BACK_SPACE);
         form.$("[data-test-id=date] input").setValue(DataGenerator.Registration.generateFirstDate());
         form.$("[data-test-id=name] input").setValue(meetingDate.getFirstName() + " " + meetingDate.getLastName());
@@ -79,7 +79,7 @@ public class CardDeliveryNewDateTest {
 
     @Test
     void shouldSubmitRequestWithoutName() {
-        form.$("[data-test-id=city] input").setValue(meetingDate.getCity());
+        form.$("[data-test-id=city] input").setValue(DataGenerator.Registration.generateCity());
         form.$("[data-test-id=date] input").setValue(DataGenerator.Registration.generateFirstDate());
         form.$("[data-test-id=phone] input").setValue("+7" + meetingDate.getPhoneNumber());
         form.$("[data-test-id=agreement]").click();
@@ -89,7 +89,7 @@ public class CardDeliveryNewDateTest {
 
     @Test
     void shouldSubmitInvalidName() {
-        form.$("[data-test-id=city] input").setValue(meetingDate.getCity());
+        form.$("[data-test-id=city] input").setValue(DataGenerator.Registration.generateCity());
         form.$("[data-test-id=date] input").setValue(DataGenerator.Registration.generateFirstDate());
         $("[name=name]").setValue("Ivan Petrov");
         form.$("[data-test-id=phone] input").setValue("+7" + meetingDate.getPhoneNumber());
@@ -100,7 +100,7 @@ public class CardDeliveryNewDateTest {
 
     @Test
     void shouldSubmitRequestWithoutPhone() {
-        form.$("[data-test-id=city] input").setValue(meetingDate.getCity());
+        form.$("[data-test-id=city] input").setValue(DataGenerator.Registration.generateCity());
         form.$("[data-test-id=date] input").setValue(DataGenerator.Registration.generateFirstDate());
         form.$("[data-test-id=name] input").setValue(meetingDate.getFirstName() + " " + meetingDate.getLastName());
         form.$("[data-test-id=agreement]").click();
@@ -110,7 +110,7 @@ public class CardDeliveryNewDateTest {
 
     @Test
     void shouldSubmitInvalidPhone() {
-        form.$("[data-test-id=city] input").setValue(meetingDate.getCity());
+        form.$("[data-test-id=city] input").setValue(DataGenerator.Registration.generateCity());
         form.$("[data-test-id=date] input").setValue(DataGenerator.Registration.generateFirstDate());
         form.$("[data-test-id=name] input").setValue(meetingDate.getFirstName() + " " + meetingDate.getLastName());
         form.$("[data-test-id=phone] input").setValue("7927000");
@@ -121,7 +121,7 @@ public class CardDeliveryNewDateTest {
 
     @Test
     void shouldSubmitRequestWithoutCheckbox() {
-        form.$("[data-test-id=city] input").setValue(meetingDate.getCity());
+        form.$("[data-test-id=city] input").setValue(DataGenerator.Registration.generateCity());
         form.$("[data-test-id=date] input").setValue(DataGenerator.Registration.generateFirstDate());
         form.$("[data-test-id=name] input").setValue(meetingDate.getFirstName() + " " + meetingDate.getLastName());
         form.$("[data-test-id=phone] input").setValue("+7" + meetingDate.getPhoneNumber());
