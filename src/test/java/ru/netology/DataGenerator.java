@@ -26,13 +26,13 @@ public class DataGenerator {
 
         public static String generateFirstDate() {
             LocalDate now = LocalDate.now().plusDays(3);
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MM yyyy");
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
             return now.format(formatter);
         }
 
         public static String generateSecondDate() {
             LocalDate now = LocalDate.now().plusDays(7);
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MM yyyy");
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
             return now.format(formatter);
         }
 

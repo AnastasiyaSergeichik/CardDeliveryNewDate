@@ -11,12 +11,12 @@ import static com.codeborne.selenide.Selectors.withText;
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.Selenide.open;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.openqa.selenium.By.cssSelector;
 
 public class CardDeliveryNewDateTest {
     private SelenideElement form;
     private MeetingDate meetingDate;
-
 
     @BeforeEach
     void setUp() {
@@ -33,8 +33,8 @@ public class CardDeliveryNewDateTest {
         form.$("[data-test-id=phone] input").setValue("+7" + meetingDate.getPhoneNumber());
         form.$("[data-test-id=agreement]").click();
         form.$(".button").click();
-        $(withText("Успешно!")).waitUntil(visible, 15000);
-        $(".notification_status_ok").shouldBe(exist);
+        String successText = $("[data-test-id=success-notification]").getText();
+        assertEquals("Успешно!\nВстреча успешно запланирована на " + DataGenerator.Registration.generateFirstDate(), successText);
     }
 
     @Test
@@ -52,8 +52,8 @@ public class CardDeliveryNewDateTest {
         form.$("[data-test-id=date] input").doubleClick().sendKeys(Keys.BACK_SPACE);
         form.$("[data-test-id=date] input").setValue(DataGenerator.Registration.generateSecondDate());
         $(cssSelector(".notification_status_error .button")).click();
-        $(withText("Успешно!")).waitUntil(visible, 15000);
-        $(".notification_status_ok").shouldBe(exist);
+        String successText = $("[data-test-id=success-notification]").getText();
+        assertEquals("Успешно!\nВстреча успешно запланирована на " + DataGenerator.Registration.generateSecondDate(), successText);
     }
 
     @Test
