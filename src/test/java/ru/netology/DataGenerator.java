@@ -21,7 +21,6 @@ public class DataGenerator {
                     faker.name().firstName(),
                     faker.name().lastName(),
                     faker.phoneNumber().cellPhone());
-
         }
 
         public static String generateFirstDate() {
