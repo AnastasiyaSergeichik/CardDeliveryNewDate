@@ -17,27 +17,27 @@ import static ru.netology.DataGenerator.Registration.*;
 
 public class CardDeliveryNewDateTest {
     private SelenideElement form;
-    private final String city = generateCity();
+    private Meeting meeting;
     private final String invalidCity = generateInvalidCity();
     private final String fullName = generateFullName();
     private final String invalidFullName = generateInvalidFullName();
     private final String firstDate = generateDate(3);
     private final String secondDate = generateDate(7);
-    private final String phone = generatePhone();
     private final String invalidPhone = generateInvalidPhone();
 
     @BeforeEach
     void setUp() {
         open("http://localhost:9999");
         form = $("[action]");
+        meeting = DataGenerator.Registration.generate();
     }
 
     @Test
     void shouldSubmitRequest() {
-        form.$("[data-test-id=city] input").setValue(city);
+        form.$("[data-test-id=city] input").setValue(meeting.getCity());
         form.$("[data-test-id=date] input").setValue(firstDate);
         form.$("[data-test-id=name] input").setValue(generateFullName());
-        form.$("[data-test-id=phone] input").setValue(phone);
+        form.$("[data-test-id=phone] input").setValue(meeting.getPhone());
         form.$("[data-test-id=agreement]").click();
         form.$(".button").click();
         $(withText("Успешно!")).shouldBe(visible);
@@ -46,11 +46,11 @@ public class CardDeliveryNewDateTest {
 
     @Test
     void shouldSubmitRequestNewDate() {
-        form.$("[data-test-id=city] input").setValue(city);
+        form.$("[data-test-id=city] input").setValue(meeting.getCity());
         form.$("[data-test-id=date] input").doubleClick().sendKeys(Keys.BACK_SPACE);
         form.$("[data-test-id=date] input").setValue(firstDate);
         form.$("[data-test-id=name] input").setValue(fullName);
-        form.$("[data-test-id=phone] input").setValue(phone);
+        form.$("[data-test-id=phone] input").setValue(meeting.getPhone());
         form.$("[data-test-id=agreement]").click();
         $$("button").find(exactText("Запланировать")).click();
         $(withText("Успешно")).waitUntil(visible, 15000);
@@ -67,7 +67,7 @@ public class CardDeliveryNewDateTest {
     void shouldSubmitRequestWithoutCity() {
         form.$("[data-test-id=date] input").setValue(firstDate);
         form.$("[data-test-id=name] input").setValue(fullName);
-        form.$("[data-test-id=phone] input").setValue(phone);
+        form.$("[data-test-id=phone] input").setValue(meeting.getPhone());
         form.$("[data-test-id=agreement]").click();
         form.$(".button").click();
         $(".input_invalid .input__sub").shouldHave(exactText("Поле обязательно для заполнения"));
@@ -78,7 +78,7 @@ public class CardDeliveryNewDateTest {
         form.$("[data-test-id=city] input").setValue(invalidCity);
         form.$("[data-test-id=date] input").setValue(firstDate);
         form.$("[data-test-id=name] input").setValue(fullName);
-        form.$("[data-test-id=phone] input").setValue(phone);
+        form.$("[data-test-id=phone] input").setValue(meeting.getPhone());
         form.$("[data-test-id=agreement]").click();
         form.$(".button").click();
         $(".input_invalid .input__sub").shouldHave(exactText("Доставка в выбранный город недоступна"));
@@ -86,9 +86,9 @@ public class CardDeliveryNewDateTest {
 
     @Test
     void shouldSubmitRequestWithoutName() {
-        form.$("[data-test-id=city] input").setValue(city);
+        form.$("[data-test-id=city] input").setValue(meeting.getCity());
         form.$("[data-test-id=date] input").setValue(firstDate);
-        form.$("[data-test-id=phone] input").setValue(phone);
+        form.$("[data-test-id=phone] input").setValue(meeting.getPhone());
         form.$("[data-test-id=agreement]").click();
         form.$(".button").click();
         $(".input_invalid .input__sub").shouldHave(exactText("Поле обязательно для заполнения"));
@@ -96,10 +96,10 @@ public class CardDeliveryNewDateTest {
 
     @Test
     void shouldSubmitInvalidName() {
-        form.$("[data-test-id=city] input").setValue(city);
+        form.$("[data-test-id=city] input").setValue(meeting.getCity());
         form.$("[data-test-id=date] input").setValue(firstDate);
         $("[name=name]").setValue(invalidFullName);
-        form.$("[data-test-id=phone] input").setValue(phone);
+        form.$("[data-test-id=phone] input").setValue(meeting.getPhone());
         form.$("[data-test-id=agreement]").click();
         form.$(".button").click();
         $(".input_invalid .input__sub").shouldHave(exactText("Имя и Фамилия указаные неверно. Допустимы только русские буквы, пробелы и дефисы."));
@@ -107,7 +107,7 @@ public class CardDeliveryNewDateTest {
 
     @Test
     void shouldSubmitRequestWithoutPhone() {
-        form.$("[data-test-id=city] input").setValue(city);
+        form.$("[data-test-id=city] input").setValue(meeting.getCity());
         form.$("[data-test-id=date] input").setValue(firstDate);
         form.$("[data-test-id=name] input").setValue(fullName);
         form.$("[data-test-id=agreement]").click();
@@ -117,7 +117,7 @@ public class CardDeliveryNewDateTest {
 
     @Test
     void shouldSubmitInvalidPhone() {
-        form.$("[data-test-id=city] input").setValue(city);
+        form.$("[data-test-id=city] input").setValue(meeting.getCity());
         form.$("[data-test-id=date] input").setValue(firstDate);
         form.$("[data-test-id=name] input").setValue(fullName);
         form.$("[data-test-id=phone] input").setValue(invalidPhone);
@@ -128,10 +128,10 @@ public class CardDeliveryNewDateTest {
 
     @Test
     void shouldSubmitRequestWithoutCheckbox() {
-        form.$("[data-test-id=city] input").setValue(city);
+        form.$("[data-test-id=city] input").setValue(meeting.getCity());
         form.$("[data-test-id=date] input").setValue(firstDate);
         form.$("[data-test-id=name] input").setValue(fullName);
-        form.$("[data-test-id=phone] input").setValue(phone);
+        form.$("[data-test-id=phone] input").setValue(meeting.getPhone());
         form.$(".button").click();
         $(".input_invalid .checkbox__text").shouldHave(exactText("Я соглашаюсь с условиями обработки и использования моих персональных данных"));
     }
