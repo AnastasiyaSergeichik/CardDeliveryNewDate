@@ -50,6 +50,7 @@ public class DataGenerator {
             Random rand = new Random();
             List<String> phoneList = Arrays.asList("+34", "58585858585", "+5676");
             String phone = phoneList.get(rand.nextInt(phoneList.size()));
+
             return phone;
         }
     }
