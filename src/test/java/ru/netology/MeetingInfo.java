@@ -5,7 +5,8 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class Meeting {
+public class MeetingInfo {
+    private final String name;
     private final String city;
     private final String phone;
 }
